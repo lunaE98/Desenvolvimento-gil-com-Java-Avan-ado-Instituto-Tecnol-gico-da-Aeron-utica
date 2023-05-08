@@ -3,6 +3,7 @@ Projeto Final curso ITA- Java Avançado
 
 Projeto: 
 * Recomendado usar as IDE do Java
+
 O objetivo dessa atividade é criar uma aplicação web mais completa que faz acesso ao banco de dados. A atividade é para ser desenvolvida utilizando Servlets, JSP e JDBC, seguindo o modelo MVC. Nenhum outro framework deve ser utilizado. 
 
 A aplicação a ser desenvolvida é um sistema simples de fórum, onde os usuários podem adicionar tópicos e comentários aos tópicos. Eles recebem pontos pelas ações que fazem no sistema e uma tela de ranking mostra a colocação dos usuários.
