@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exibe Tópico</title>
+  </head>
+  <body>
+    <h1 id="topic-title"></h1>
+    <p>Por <span id="topic-username"></span></p>
+    <p id="topic-text"></p>
+    <hr>
+    <h2>Comentários</h2>
+    <ul id="comment-list"></ul>
+    <form id="comment-form">
+      <label for="comment-textarea">Adicionar comentário:</label><br>
+      <textarea id="comment-textarea" rows="4" cols="50"></textarea><br>
+      <button type="submit">Enviar</button>
+    </form>
+    <a href="topicos.html">Voltar para Tópicos</a>
+    <script>
+      const topicTitle = document.getElementById('topic-title');
+      const topicUsername = document.getElementById('topic-username');
+      const topicText = document.getElementById('topic-text');
+      const commentList = document.getElementById('comment-list');
+      const commentForm = document.getElementById('comment-form');
+      const commentTextarea = document.getElementById('comment-textarea');
+
+      // função para obter as informações do tópico do servidor
+      function getTopicFromServer() {
+        // faça uma requisição AJAX para o servidor para obter as informações do tópico
+        // retorne um objeto JSON com as informações do tópico
+        return {
+          title: 'Meu primeiro tópico',
+          username: 'fulano',
+          text: 'Este é o texto do meu primeiro tópico.'
+        };
+      }
+
+      // função para obter os comentários do servidor
+      function getCommentsFromServer() {
+        // faça uma requisição AJAX para o servidor para obter os comentários do tópico
+        // retorne um objeto JSON com os comentários do tópico
+        return [
+          {
+            username: 'beltrano',
+            text: 'Este é um comentário.'
+          },
+          {
+            username: 'ciclano',
+            text: 'Este é outro comentário.'
+          }
+        ];
+      }
+
+      // função para preencher a página com as informações do tópico e os comentários
+      function fillTopicPage(topic, comments) {
+        topicTitle.textContent = topic.title;
+        topicUsername.textContent = topic.username;
+        topicText.textContent = topic.text;
+
+        commentList.innerHTML = '';
+        comments.forEach(comment => {
+          const li = document.createElement('li');
+          li.textContent = `${comment.username}: ${comment.text}`;
+          commentList.appendChild(li);
+        });
+      }
+
+      // ao carregar a página, obter as informações do tópico e os comentários do servidor e preencher a página
+      document.addEventListener('DOMContentLoaded', () => {
+        const topic = getTopicFromServer();
+        const comments = getCommentsFromServer();
+        fillTopicPage(topic, comments);
+      });
+
+      // ao enviar o formulário de comentário, adicionar o comentário ao servidor e recarregar a página
+      commentForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const commentText = commentTextarea.value;
+        // faça uma requisição AJAX para adicionar o comentário ao servidor
+        // recarregue a página para exibir o comentário adicionado
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>
